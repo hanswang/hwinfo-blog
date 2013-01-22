@@ -117,11 +117,11 @@ class Facebook_Social_Plugin_Settings {
 		if ( ! class_exists( 'Facebook_Social_Plugin' ) )
 			require_once( dirname( dirname(__FILE__) ) . '/social-plugins/class-facebook-social-plugin.php' );
 
-		if ( ! ( is_string( $existing_value ) && $existing_value && in_array( $existing_value, Facebook_Social_Plugin::$color_scheme_choices, true ) ) )
+		if ( ! ( is_string( $existing_value ) && $existing_value && in_array( $existing_value, Facebook_Social_Plugin::$colorscheme_choices, true ) ) )
 			$existing_value = 'light';
 
 		$checkboxes = '';
-		foreach( Facebook_Social_Plugin::$color_scheme_choices as $color_scheme ) {
+		foreach( Facebook_Social_Plugin::$colorscheme_choices as $color_scheme ) {
 			$checkboxes .= '<label';
 			// match background color and text color of the Facebook color scheme options
 			// provides a hint of final display. May change but possibly helpful in making a decision
@@ -190,13 +190,12 @@ class Facebook_Social_Plugin_Settings {
 
 		// iterate through all display types, looking for our feature in each
 		foreach ( $all_possible_display_types as $display_type ) {
-			$option_name = "facebook_{$display_type}_features";
-
-			$display_preferences = get_option( $option_name );
+			$display_preferences = get_option( "facebook_{$display_type}_features" );
 			if ( ! is_array( $display_preferences ) )
 				continue;
 			if ( isset( $display_preferences[$feature_slug] ) )
 				$show_on[$display_type] = true;
+			unset( $display_preferences );
 		}
 
 		return $show_on;

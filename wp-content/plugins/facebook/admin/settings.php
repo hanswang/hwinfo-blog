@@ -12,7 +12,7 @@ class Facebook_Settings {
 	 * @since 1.1
 	 * @var array
 	 */
-	public static $features = array( 'like' => true, 'send' => true, 'subscribe' => true, 'recommendations_bar' => true, 'comments' => true, 'social_publisher' => true );
+	public static $features = array( 'like' => true, 'send' => true, 'follow' => true, 'recommendations_bar' => true, 'comments' => true, 'social_publisher' => true );
 
 	/**
 	 * Add hooks
@@ -20,9 +20,10 @@ class Facebook_Settings {
 	 * @since 1.1
 	 */
 	public static function init() {
-		self::migrate_options_10();
+		self::migrate_options();
 		add_action( 'admin_menu', array( 'Facebook_Settings', 'settings_menu_items' ) );
 		add_filter( 'plugin_action_links', array( 'Facebook_Settings', 'plugin_action_links' ), 10, 2 );
+		add_action( 'admin_enqueue_scripts', array( 'Facebook_Settings', 'enqueue_scripts' ) );
 
 		if ( self::app_credentials_exist() ) {
 			$available_features = apply_filters( 'facebook_features', self::$features );
@@ -35,6 +36,15 @@ class Facebook_Settings {
 				}
 			}
 		}
+	}
+
+	/**
+	 * Enqueue scripts and styles
+	 *
+	 * @since 1.1.6
+	 */
+	public static function enqueue_scripts() {
+		wp_enqueue_style( 'facebook-admin-icons', plugins_url( 'static/css/admin/icons' . ( ( defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ) ? '' : '.min' ) . '.css', dirname( __FILE__ ) ), array(), '1.1.9' );
 	}
 
 	/**
@@ -91,11 +101,11 @@ class Facebook_Settings {
 			Facebook_Send_Button_Settings::add_submenu_item( $menu_slug );
 		}
 
-		if ( isset( $available_features['subscribe'] ) ) {
-			if ( ! class_exists( 'Facebook_Subscribe_Button_Settings' ) )
-				require_once( dirname(__FILE__) . '/settings-subscribe-button.php' );
+		if ( isset( $available_features['follow'] ) ) {
+			if ( ! class_exists( 'Facebook_Follow_Button_Settings' ) )
+				require_once( dirname(__FILE__) . '/settings-follow-button.php' );
 
-			Facebook_Subscribe_Button_Settings::add_submenu_item( $menu_slug );
+			Facebook_Follow_Button_Settings::add_submenu_item( $menu_slug );
 		}
 
 		// some features require stored Facbook application credentials. don't be a tease.
@@ -120,6 +130,10 @@ class Facebook_Settings {
 
 				Facebook_Social_Publisher_Settings::add_submenu_item( $menu_slug );
 			}
+
+			if ( ! class_exists( 'Facebook_Settings_Debugger' ) )
+				require_once( dirname(__FILE__) . '/settings-debug.php' );
+			Facebook_Settings_Debugger::add_submenu_item( $menu_slug );
 		}
 
 		// make an assumption about submenu mappings, but don't fail if our assumption is wrong
@@ -245,32 +259,47 @@ class Facebook_Settings {
 			require_once( dirname(__FILE__) . '/settings-social-plugin.php' );
 
 		$enabled_features = array();
-		$all_targets = Facebook_Social_Plugin_Settings::get_show_on_choices( 'all' );
-		$option_name = 'facebook_%s_features';
-		foreach ( $all_targets as $target ) {
-			$features = get_option( sprintf( $option_name, $target ) );
+		$views = Facebook_Social_Plugin_Settings::get_show_on_choices( 'all' );
+		foreach ( $views as $view ) {
+			$features = get_option( 'facebook_' . $view . '_features' );
 			if ( is_array( $features ) && ! empty( $features ) )
-				$enabled_features[$target] = $features;
+				$enabled_features[$view] = array_keys( $features );
 			else
-				$enabled_features[$target] = false; // show a potential target where nothing appears
+				$enabled_features[$view] = false; // show a potential target where nothing appears
 			unset( $features );
 		}
-		unset( $option_name );
-		unset( $all_targets );
+		unset( $views );
 		if ( ! empty( $enabled_features ) )
 			$debug['features'] = $enabled_features;
 		unset( $enabled_features );
 
-		$sidebar_widgets = wp_get_sidebars_widgets();
-		unset( $sidebar_widgets['wp_inactive_widgets'] ); // no need to track inactives
-		$sidebar_widgets = array_unique( array_merge( array_values( $sidebar_widgets ) ) ); // track widgets, not sidebar names
-		if ( is_array( $sidebar_widgets ) && isset( $sidebar_widgets[0] ) ) {
-			$sidebar_widgets = $sidebar_widgets[0];
-			$widgets = array();
+		$widgets = self::get_active_widgets();
+		if ( ! empty( $widgets ) )
+			$debug['widgets'] = $widgets;
 
-			// iterate through each sidebar configuration
-			// note any facebook widgets we find along the way
-			foreach( $sidebar_widgets as $widget_id ) {
+		return $debug;
+	}
+
+	/**
+	 * Get a list of Facebook widgets in one or more sidebars
+	 *
+	 * @since 1.1.6
+	 * @return array Facebook widget feature slugs
+	 */
+	public static function get_active_widgets() {
+		$sidebar_widgets = wp_get_sidebars_widgets();
+		if ( ! is_array( $sidebar_widgets ) )
+			return array();
+
+		// actives only
+		unset( $sidebar_widgets['wp_inactive_widgets'] ); // no need to track inactives
+
+		$widgets = array();
+		// iterate through each sidebar, then widgets within, looking for Facebook widgets
+		foreach ( $sidebar_widgets as $sidebar => $widget_list ) {
+			if ( ! is_array( $widget_list ) )
+				continue;
+			foreach ( $widget_list as $widget_id ) {
 				if ( strlen( $widget_id ) > 9 && substr_compare( $widget_id, 'facebook-', 0, 9 ) === 0 ) {
 					$feature = substr( $widget_id, 9, strrpos( $widget_id, '-' ) - 9 );
 					if ( ! isset( $widgets[$feature] ) )
@@ -278,13 +307,12 @@ class Facebook_Settings {
 					unset( $feature );
 				}
 			}
-
-			if ( ! empty( $widgets ) )
-				$debug['widgets'] = array_keys( $widgets );
-			unset( $widgets );
 		}
 
-		return $debug;
+		if ( ! empty( $widgets ) )
+			return array_keys( $widgets );
+
+		return array();
 	}
 
 	/**
@@ -318,14 +346,14 @@ class Facebook_Settings {
 				continue;
 
 			if ( isset( $og_conflicting_plugins[ $plugin_data['PluginURI'] ] ) )
-				$conflicting_plugins[] = $plugin_data['Name'];
+				$conflicting_plugins[] = esc_html( $plugin_data['Name'] );
 
 			unset( $plugin_data );
 		}
 
 		//if there are more than 1 plugins relying on Open Graph, warn the user on this plugins page
 		if ( ! empty( $conflicting_plugins ) ) {
-			fb_admin_dialog( sprintf( __( 'You have plugins installed that could potentially conflict with the Facebook plugin. Please consider disabling the following plugins on the %s:', 'facebook' ) . '<br />' . implode( ', ', $conflicting_plugins ), '<a href="' . admin_url( 'plugins.php' ) .'">' . esc_html( __( 'Plugins Settings page', 'facebook' ) ) . '</a>' ), true);
+			echo '<div id="facebook-warning" class="error fade"><p>' . sprintf( esc_html( __( 'You have plugins installed that could potentially conflict with the Facebook plugin. Please consider disabling the following plugins on the %s:', 'facebook' ) . '<br />' . implode( ', ', $conflicting_plugins ) ), '<a href="' . admin_url( 'plugins.php' ) .'">' . esc_html( __( 'Plugins Settings page', 'facebook' ) ) . '</a>' ) . '</p></div>';
 		}
 	}
 
@@ -334,15 +362,34 @@ class Facebook_Settings {
 	 *
 	 * @since 1.1
 	 */
-	public static function migrate_options_10() {
-		if ( get_option( 'facebook_migration_10' ) )
+	public static function migrate_options() {
+		if ( get_option( 'facebook_migration_118' ) )
 			return;
 
-		if ( current_user_can( 'manage_options' ) ) {
+		// wait for an appropirate user
+		if ( ! current_user_can( 'manage_options' ) )
+			return;
+
+		// the options migration from 1.1 sets migrations from 1.1.5 and 1.1.8
+		if ( get_option( 'facebook_migration_10' ) ) {
+			// run 1.1.5 migration if 1.0 migration already run
+			if ( ! get_option( 'facebook_migration_115' ) ) {
+				if ( ! class_exists( 'Facebook_Migrate_Options_115' ) )
+					require_once( dirname(__FILE__) . '/migrate-options-115.php' );
+				Facebook_Migrate_Options_115::migrate();
+				update_option( 'facebook_migration_115', '1' );
+			}
+			if ( ! class_exists( 'Facebook_Migrate_Options_118' ) )
+				require_once( dirname(__FILE__) . '/migrate-options-118.php' );
+			Facebook_Migrate_Options_118::migrate();
+			update_option( 'facebook_migration_118', '1' );
+		} else {
 			if ( ! class_exists( 'Facebook_Migrate_Options_10' ) )
 				require_once( dirname(__FILE__) . '/migrate-options-10.php' );
 			Facebook_Migrate_Options_10::migrate();
 			update_option( 'facebook_migration_10', '1' );
+			update_option( 'facebook_migration_115', '1' ); // 1.0 covers the changes from 1.1.5
+			update_option( 'facebook_migration_118', '1' ); // 1.0 covers the changes from 1.1.8
 		}
 	}
 }

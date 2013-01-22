@@ -5,49 +5,39 @@ Requires at least: 3.3
 Tested up to: 3.5
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Stable tag: 1.1.5
+Stable tag: 1.1.11
 
 Make your WordPress site social in a couple of clicks, powered by Facebook.
 
 == Description ==
 
-This WordPress plugin makes your site deeply social by integrating functionality from Facebook.
+The Facebook plugin for WordPress adds Facebook social plugins to your WordPress site. Associate your WordPress site with a free Facebook application identifier to enable advanced features such as automatically sharing new posts to an author's Facebook timeline or your site's Facebook page. This plugin is developed by Facebook with extra support for popular plugins and themes.
 
-[Facebook Insights](http://www.facebook.com/insights) integration included to help you better understand your site audience with Facebook demographic and sharing data.
+= Features =
 
-The Facebook plugin for WordPress is internationalization- and mobile-ready.
+* [Open Graph protocol](http://ogp.me) markup optimizes your content for social sharing and rich story previews on Facebook, Twitter, Google+, Mixi, and more.
+* [Facebook Insights](http://www.facebook.com/insights) support for Facebook accounts associated with a Facebook application.
+* Add [Like](https://developers.facebook.com/docs/reference/plugins/like/), [send](https://developers.facebook.com/docs/reference/plugins/send/), and [subscribe](https://developers.facebook.com/docs/reference/plugins/subscribe/) buttons to every post to help your site's readers share content with friends or stay connected to future content shared by your site on Facebook.
+* Enable the [Facebook Comments Box social plugin](https://developers.facebook.com/docs/reference/plugins/comments/) to encourage new comments from logged-in Facebook users and his or her Facebook friends. Comments associated with a post are sorted according to social signals including friend networks, most liked, or the most active discussion threads.
+* [Recommendations Bar](https://developers.facebook.com/docs/reference/plugins/recommendationsbar/) helps visitors discover additional content on your site by recommending posts and encouraging Like shares.
+* [Recommendations Box](https://developers.facebook.com/docs/reference/plugins/recommendations/) suggests related posts in a configurable widget.
+* Mention Facebook friends and Facebook pages associated with a post.
 
-For more information, check out [the WordPress plugin page on the Facebook Developers site](http://developers.facebook.com/wordpress/).
+= Shortcodes =
 
-= Post Features =
+Add a [Like Button](https://developers.facebook.com/docs/reference/plugins/like/) or a [Send Button](https://developers.facebook.com/docs/reference/plugins/send/) using a shortcode inside your post or evaluated from within your theme. You may override site-level options with shortcode attributes defined on the social plugin's page.
 
-Customize features through post settings.
-
-* Post to an author's Facebook Timeline whenever a post is made public.
-* Mention Facebook friends and pages. New posts will be published to the timelines of the mentioned account(s) and displayed alongside the post.
-* [Like](https://developers.facebook.com/docs/reference/plugins/like/), [send](https://developers.facebook.com/docs/reference/plugins/send/), and [subscribe](https://developers.facebook.com/docs/reference/plugins/subscribe/) buttons can be easily added to a post to drive social distribution with custom settings scoped to your Facebook application identifier.
-* [Facebook Comments Box](https://developers.facebook.com/docs/reference/plugins/comments/) social plugin including noscript fallbacks for easy indexing by search engines.
-* [Open Graph protocol](http://ogp.me) integration to help your content stand out in Facebook newsfeed, Twitter Cards, Windows 8 bookmarks, and other consuming agents.
-* [Recommendations bar](https://developers.facebook.com/docs/reference/plugins/recommendationsbar/) helps visitors discover more content on your site by recommending other articles and encouraging Like shares.
-
-= Widgets =
-
-Add new widgets to one or more sidebars.
-
-* [Activity Feed Box](https://developers.facebook.com/docs/reference/plugins/activity/) displays recent sharing activity on your site customized for each visitor logged-on to Facebook.
-* [Recommendations Box](https://developers.facebook.com/docs/reference/plugins/recommendations/) recommends content based on visitor interests and the sharing activity of his or her Facebook friends.
-* [Like](https://developers.facebook.com/docs/reference/plugins/like/), [send](https://developers.facebook.com/docs/reference/plugins/send/), and [subscribe](https://developers.facebook.com/docs/reference/plugins/subscribe/) buttons encourage social engagement.
+* `[facebook_like_button]`
+* `[facebook_send_button]`
 
 = Contributing code =
 
-All of the [source code for this plugin is available on Facebook's GitHub account](https://github.com/facebook/wordpress). If you like to contribute code to the plugin, open up an issue against the repository where we can discuss it. Once you have completed the code, open [a Pull Request](https://github.com/facebook/wordpress/pulls).
-
-Note: all contributors must agree to and sign the [Facebook Contributor License Agreement](https://developers.facebook.com/opensource/cla) prior to submitting Pull Requests. We can't accept Pull Requests until this document is signed and submitted, affirming your code is not encumbered by intellectual property claims by yourself or your employer and therefore eligible for redistribution by Facebook under the Freedoms of the GPL.
+The development [source code for this plugin is available on Facebook's GitHub account](https://github.com/facebook/wordpress). [Pull Requests](https://github.com/facebook/wordpress/pulls) and code discussion welcome.
 
 == Installation ==
 
 1. Install Facebook for WordPress either via the WordPress.org plugin directory, or by uploading the files to your server (in the `/wp-content/plugins/` directory).
-1. After activating the plugin, you will be asked to set up your Facebook app (via http://developers.facebook.com/apps ), with step-by-step instructions.
+1. After activating the plugin, you will be asked to set up your Facebook application or enter existing credentials copied from the [Facebook Developers site](http://developers.facebook.com/apps/).
 1. That's it. You're ready to go!
 
 == Screenshots ==
@@ -82,18 +72,21 @@ Note: all contributors must agree to and sign the [Facebook Contributor License 
 * `facebook_excerpt_more` - string appearing at the end of a truncated excerpt string. default: "&hellip;"
 * `fb_rel_canonical` - customize the canonical URL used by Facebook for a post. Affects Open Graph protocol URL definitions, URL references sent in Open Graph actions, and more. default: result of `get_permalink()`
 * `facebook_comment_schema_org` - override output of search engine friendly comments content using [Schema.org microdata markup](http://googlewebmastercentral.blogspot.com/2011/06/introducing-schemaorg-search-engines.html)
+* `facebook_comments_number_more` - override the default "% Comments" text used to generate a client-side comments number. similar to WordPress' [comments_number](http://codex.wordpress.org/Function_Reference/comments_number) more parameter.
 * `facebook_anchor_target` - customize the [browsing context name](http://www.whatwg.org/specs/web-apps/current-work/multipage/browsers.html#browsing-context-names) used for links to Facebook output alongside your post such as mentions. default: `_blank`
 * `facebook_mentions_classes` - add or remove HTML classes from the parent HTML div element of mentions links
 * `fb_meta_tags` - Customize Open Graph protocol markup before it is output to the page
+* `facebook_ogp_prefixed` - true to always use prefixed properties (og:title) or false to use full IRI properties (http://ogp.me/ns#title)
+* `facebook_rdfa_mappings` - array of RDFa references with desired prefix. Used to remap Open Graph protocol properties from a full IRI to a prefix
 * `fb_get_user_meta` - fetch a user meta value by attaching to this filter, bypassing the WordPress user meta API
 * `fb_update_user_meta` - update a user meta value by attaching to this filter, bypassing the WordPress user meta API
 * `fb_delete_user_meta` - delete a user meta value by attaching to this filter, bypassing the WordPress user meta API
 
 == Frequently Asked Questions ==
 
-= How do I change the image that appears for my posts shared on Facebook =
+= How do I change the image that appears for my posts shared on Facebook? =
 
-The plugin generates [Open Graph protocol](http://ogp.me/) markup for your site's webpages including an explicitly-specified image for posts with an associated [post thumbnail](http://codex.wordpress.org/Post_Thumbnails). Your plugin or theme may define additional images through the `fb_meta_tags` filter. If an post thumbnail image exists your additional image will be an alternate for stories shared through a pasted link. Unattended story summaries use the first defined image.
+The plugin generates [Open Graph protocol](http://ogp.me/) markup for your site's webpages including an explicitly-specified image for posts with an associated [post thumbnail](http://codex.wordpress.org/Post_Thumbnails). Your plugin or theme may define additional images through the `fb_meta_tags` filter. If a post thumbnail image exists your additional image will be an alternate for stories shared through a pasted link. Unattended story summaries use the first defined image. [support sticky](http://wordpress.org/support/topic/customize-open-graph-protocol-for-your-site-or-network)
 
 = How do I moderate comments and add reviewers? =
 
@@ -104,6 +97,24 @@ The [Comment Moderation Tool](https://developers.facebook.com/tools/comments) al
 The [Comments Box social plugin](https://developers.facebook.com/docs/reference/plugins/comments/) is meant to replace the WordPress commenting system with a more social, client-side experience. We do not currently support synchronizing comments stored on Facebook with comments stored in your WordPress database.
 
 == Upgrade Notice ==
+
+= 1.1.11 =
+Like Box widget. Improved locale selector. Bugfix publishing to a Facebook Page.
+
+= 1.1.10 =
+Improved string comparison functions for some installs. Improved support for sites without registered sidebars.
+
+= 1.1.9 =
+Subscribe Button is now Follow Button. Google Analytics social action tracking support. Gallery images included in Open Graph protocol markup.
+
+= 1.1.8 =
+Bugfix for post context on a comments filter.
+
+= 1.1.7 =
+Improved comment filters. Add post author as Comment Box admin/moderator. Hide settings error displayed if no output functions exist.
+
+= 1.1.6 =
+Debug page, og: prefixed Open Graph protocol properties, Shortcode API support for Like and Send buttons, comments improvements.
 
 = 1.1.5 =
 Fix comments enabled option improperly set on comments settings save when no post types selected.
@@ -128,12 +139,49 @@ Security fixes. Improved customization and debugging of settings. l10n and i18n 
 
 == Changelog ==
 
+= 1.1.11 =
+* Added [Like Box](https://developers.facebook.com/docs/reference/plugins/like-box/) widget for Facebook Page promotion
+* New locale selector provides more extensible code
+* Social publisher settings page inline help
+* Fixed bug publishing to a Facebook Page
+
+= 1.1.10 =
+* Do not compare strings when needle longer than haystack
+* Test if expected widget files and classes exist before registering a widget. Fixes possible cache conflict
+
+= 1.1.9 =
+* Support social action tracking in Google Analytics. Includes [Google Analyticator](http://wordpress.org/extend/plugins/google-analyticator/) and [Google Analytics for WordPress](http://wordpress.org/extend/plugins/google-analytics-for-wordpress/) support
+* Facebook Subscribe Button is now known as Follow Button
+* Add gallery images to Open Graph protocol images array if gallery shortcode present
+* Update to Facebook PHP SDK 3.2.2
+* WordPress 3.5 color picker support in Recommendations Box and Activity Feed plugins
+* Fix incorrectly referenced admin menu icon file locations in minified version of icons.css
+
+= 1.1.8 =
+* Bugfix: use the post global object instead of get_post on a comments filter
+
+= 1.1.7 =
+* Comments Box - overrides of WordPress comment system applied at the post level, allowing more fine-grained control of comments by post type or mixed in a single loop
+* Comments Box - declare post author with `moderate_comments` capability an admin of the individual page, granting comment moderation capabilities on Facebook for the post
+* Hide settings error display if function is not yet defined
+
+= 1.1.6 =
+* [Open Graph protocol](http://ogp.me/) data output in prefixed form (e.g. og:title) instead of full IRI. You may declare your preference to always use a prefix in the future using the `facebook_ogp_prefixed` filter
+* Debug page displays your plugin configuration, author accounts associated with a Facebook account, and server information for troubleshooting
+* [Shortcode](http://codex.wordpress.org/Shortcode_API) support for Like Button and Send Button output
+* Comments Box may be disabled for a specific post when post comments are marked closed in WordPress and no comments are stored on Facebook
+* Application id and secret are verified on Facebook servers, generating an app access token for future use
+* Async JavaScript loader support for concatenated script loader configurations
+* Fixed an issue with Comments Box color scheme preference never saving a "dark" preference value
+* JavaScript files renamed to .js and .min.js to match WP Core 3.5 convention (see [Core #21633](http://core.trac.wordpress.org/ticket/21633) )
+* Includes Facebook PHP SDK 3.2.1 and its new SSL certificate chain fallback
+
 = 1.1.5 =
 * Delete comments enabled option on plugin's settings comments page save when no comments selected.
 
 = 1.1.4 =
 
-* Comment counts powered by Facebook available in all page contexts when comments box social plugin enabled for one or more post types.
+* Comment counts powered by Facebook available in all page contexts when comments box social plugin enabled for one or more post types
 * Subscribe button settings fix
 * Recommendations Bar max age setting fix
 
