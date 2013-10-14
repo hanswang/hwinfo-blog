@@ -11,25 +11,37 @@ if ( ! class_exists( 'Facebook_Social_Plugin_Button_Settings' ) )
 class Facebook_Like_Button_Settings extends Facebook_Social_Plugin_Button_Settings {
 
 	/**
-	 * Setting page identifier
+	 * Setting page identifier.
 	 *
 	 * @since 1.1
+	 *
 	 * @var string
 	 */
 	const PAGE_SLUG = 'facebook-like-button';
 
 	/**
-	 * Define our option array value
+	 * Define our option array value.
 	 *
 	 * @since 1.1
+	 *
 	 * @var string
 	 */
 	const OPTION_NAME = 'facebook_like_button';
 
 	/**
-	 * Initialize with an options array
+	 * The hook suffix assigned by add_submenu_page()
 	 *
 	 * @since 1.1
+	 *
+	 * @var string
+	 */
+	protected $hook_suffix = '';
+
+	/**
+	 * Initialize with an options array.
+	 *
+	 * @since 1.1
+	 *
 	 * @param array $options existing options
 	 */
 	public function __construct( $options = array() ) {
@@ -43,6 +55,8 @@ class Facebook_Like_Button_Settings extends Facebook_Social_Plugin_Button_Settin
 	 * Evaluate the Facebook_Like_Button class file if it is not already loaded
 	 *
 	 * @since 1.1
+	 *
+	 * @return void
 	 */
 	public static function require_like_button_builder() {
 		if ( ! class_exists( 'Facebook_Like_Button' ) )
@@ -50,7 +64,7 @@ class Facebook_Like_Button_Settings extends Facebook_Social_Plugin_Button_Settin
 	}
 
 	/**
-	 * Reference the social plugin by name
+	 * Reference the social plugin by name.
 	 *
 	 * @since 1.1
 	 * @return string social plugin name
@@ -60,9 +74,10 @@ class Facebook_Like_Button_Settings extends Facebook_Social_Plugin_Button_Settin
 	}
 
 	/**
-	 * Navigate to the settings page through the Facebook top-level menu item
+	 * Navigate to the settings page through the Facebook top-level menu item.
 	 *
 	 * @since 1.1
+	 *
 	 * @uses add_submenu_page()
 	 * @param string $parent_slug Facebook top-level menu item slug
 	 * @return string submenu hook suffix
@@ -89,9 +104,11 @@ class Facebook_Like_Button_Settings extends Facebook_Social_Plugin_Button_Settin
 	}
 
 	/**
-	 * Load stored options and scripts on settings page view
+	 * Load stored options and scripts on settings page view.
 	 *
 	 * @since 1.1
+	 *
+	 * @return void
 	 */
 	public function onload() {
 		$options = get_option( self::OPTION_NAME );
@@ -103,9 +120,11 @@ class Facebook_Like_Button_Settings extends Facebook_Social_Plugin_Button_Settin
 	}
 
 	/**
-	 * Load the page
+	 * Load the page.
 	 *
 	 * @since 1.1
+	 *
+	 * @return void
 	 */
 	public function settings_page() {
 		if ( ! isset( $this->hook_suffix ) )
@@ -115,12 +134,13 @@ class Facebook_Like_Button_Settings extends Facebook_Social_Plugin_Button_Settin
 	}
 
 	/**
-	 * Hook into the settings API
+	 * Hook into the settings API.
 	 *
 	 * @since 1.1
+	 *
 	 * @uses add_settings_section()
 	 * @uses add_settings_field()
-	 * @param string $page parent page slug
+	 * @return void
 	 */
 	private function settings_api_init() {
 		if ( ! isset( $this->hook_suffix ) )
@@ -211,6 +231,8 @@ class Facebook_Like_Button_Settings extends Facebook_Social_Plugin_Button_Settin
 	 * Introduce publishers to the Like Button social plugin
 	 *
 	 * @since 1.1
+	 *
+	 * @return void
 	 */
 	public function section_header() {
 		echo '<p>' . esc_html( __( 'Help your visitors share your pages on their Facebook profile with one click.', 'facebook' ) ) . ' <a href="https://developers.facebook.com/docs/reference/plugins/like/" title="' . esc_attr( sprintf( __( '%s social plugin documentation', 'facebook' ), 'Facebook ' . self::social_plugin_name() ) ) . '">' . esc_html( __( 'Read more...', 'facebook' ) ) . '</a></p>';
@@ -220,7 +242,9 @@ class Facebook_Like_Button_Settings extends Facebook_Social_Plugin_Button_Settin
 	 * Where should the button appear?
 	 *
 	 * @since 1.1
+	 *
 	 * @param array $extra_attributes custom form attributes
+	 * @return void
 	 */
 	public function display_show_on( $extra_attributes = array() ) {
 		$key = 'show_on';
@@ -246,7 +270,9 @@ class Facebook_Like_Button_Settings extends Facebook_Social_Plugin_Button_Settin
 	 * Where would you like it?
 	 *
 	 * @since 1.1
+	 *
 	 * @param array $extra_attributes custom form attributes
+	 * @return void
 	 */
 	public function display_position( $extra_attributes = array() ) {
 		$key = 'position';
@@ -267,10 +293,12 @@ class Facebook_Like_Button_Settings extends Facebook_Social_Plugin_Button_Settin
 	}
 
 	/**
-	 * Display the send button option checkbox
+	 * Display the send button option checkbox.
 	 *
 	 * @since 1.1
+	 *
 	 * @param array $extra_attributes custom form attributes
+	 * @return void
 	 */
 	public function display_send( $extra_attributes = array() ) {
 		$key = 'send';
@@ -292,13 +320,14 @@ class Facebook_Like_Button_Settings extends Facebook_Social_Plugin_Button_Settin
 
 		echo esc_html( sprintf( __( 'Include a %1$s alongside the %2$s.', 'facebook' ), __( 'Send Button', 'facebook' ), self::social_plugin_name() ) ) . '</label>';
 
-		echo '<p class="description">' . esc_html( sprintf( __( 'Allows a %1$s user to easily send your URL to a friend via email, %1$s message, or post to a %1$s group.', 'facebook' ), 'Facebook' ) ) . '</p>';
+		echo '<p class="description">' . esc_html( __( 'Allows a Facebook user to easily send your URL to a friend via email, Facebook message, or post to a Facebook group.', 'facebook' ) ) . '</p>';
 	}
 
 	/**
-	 * Describe layout choices
+	 * Describe layout choices.
 	 *
 	 * @since 1.1
+	 *
 	 * @return array layout descriptions keyed by layout choice
 	 */
 	public static function layout_descriptions() {
@@ -311,10 +340,12 @@ class Facebook_Like_Button_Settings extends Facebook_Social_Plugin_Button_Settin
 	}
 
 	/**
-	 * Choose a Like Button layout option
+	 * Choose a Like Button layout option.
 	 *
 	 * @since 1.1
+	 *
 	 * @param array $extra_attributes custom form attributes
+	 * @return void
 	 */
 	public function display_layout( $extra_attributes = array() ) {
 		$key = 'layout';
@@ -368,7 +399,9 @@ class Facebook_Like_Button_Settings extends Facebook_Social_Plugin_Button_Settin
 	 * Option to display faces of friends below the Like Button
 	 *
 	 * @since 1.1
+	 *
 	 * @param array $extra_attributes custom form attributes
+	 * @return void
 	 */
 	public function display_show_faces( $extra_attributes = array() ) {
 		$key = 'show_faces';
@@ -393,7 +426,9 @@ class Facebook_Like_Button_Settings extends Facebook_Social_Plugin_Button_Settin
 	 * Allow the publisher to customize the width of the Like Button
 	 *
 	 * @since 1.1
+	 *
 	 * @param array $extra_attributes custom form attributes
+	 * @return void
 	 */
 	public function display_width( $extra_attributes = array() ) {
 		global $content_width;
@@ -431,7 +466,9 @@ class Facebook_Like_Button_Settings extends Facebook_Social_Plugin_Button_Settin
 	 * Choose action text.
 	 *
 	 * @since 1.1
+	 *
 	 * @param array $extra_attributes custom form attributes
+	 * @return void
 	 */
 	public function display_action( $extra_attributes = array() ) {
 		$key = 'action';
@@ -468,10 +505,12 @@ class Facebook_Like_Button_Settings extends Facebook_Social_Plugin_Button_Settin
 	}
 
 	/**
-	 * Choose a custom font
+	 * Choose a custom font.
 	 *
 	 * @since 1.1
+	 *
 	 * @param array $extra_attributes custom form attributes
+	 * @return void
 	 */
 	public function display_font( $extra_attributes = array() ) {
 		$key = 'font';
@@ -492,10 +531,12 @@ class Facebook_Like_Button_Settings extends Facebook_Social_Plugin_Button_Settin
 	}
 
 	/**
-	 * Customize the color scheme
+	 * Customize the color scheme.
 	 *
 	 * @since 1.1
+	 *
 	 * @param array $extra_attributes custom form attributes
+	 * @return void
 	 */
 	public function display_colorscheme( $extra_attributes = array() ) {
 		$key = 'colorscheme';
@@ -516,9 +557,10 @@ class Facebook_Like_Button_Settings extends Facebook_Social_Plugin_Button_Settin
 	}
 
 	/**
-	 * Translate HTML data response returned from Facebook social plugin builder into underscored keys and PHP values before saving
+	 * Translate HTML data response returned from Facebook social plugin builder into underscored keys and PHP values before saving.
 	 *
 	 * @since 1.1
+	 *
 	 * @param array $options data-* options returned from Facebook social plugin builder
 	 * @return array $options options to store in WordPress
 	 */
@@ -526,12 +568,21 @@ class Facebook_Like_Button_Settings extends Facebook_Social_Plugin_Button_Settin
 		if ( ! is_array( $options ) )
 			return array();
 
-		if ( isset( $options['send'] ) && $options['send'] === 'true' )
-			$options['send'] = true;
-		if ( isset( $options['show-faces'] ) && $options['show-faces'] === 'true' ) {
-			$options['show_faces'] = true;
+		if ( isset( $options['send'] ) ) {
+			if ( $options['send'] === 'true' )
+				$options['send'] = true;
+			else if ( $options['send'] === 'false' )
+				$options['send'] = false;
+		}
+
+		if ( isset( $options['show-faces'] ) ) {
+			if ( $options['show-faces'] === 'true' )
+				$options['show_faces'] = true;
+			else if ( $options['show-faces'] === 'false' )
+				$options['show_faces'] = false;
 			unset( $options['show-faces'] );
 		}
+
 		if ( isset( $options['width'] ) )
 			$options['width'] = absint( $options['width'] );
 
@@ -539,9 +590,10 @@ class Facebook_Like_Button_Settings extends Facebook_Social_Plugin_Button_Settin
 	}
 
 	/**
-	 * Sanitize Like Button settings before they are saved to the database
+	 * Sanitize Like Button settings before they are saved to the database.
 	 *
 	 * @since 1.1
+	 *
 	 * @param array $options Like Button options
 	 * @return array clean option sets. note: we remove Like Button social plugin default options, storing only custom settings (e.g. dark color scheme stored, light is default and therefore not stored)
 	 */
@@ -558,6 +610,16 @@ class Facebook_Like_Button_Settings extends Facebook_Social_Plugin_Button_Settin
 			unset( $clean_options['show_on'] );
 		}
 		unset( $options['show_on'] );
+
+		foreach( array( 'send', 'show_faces' ) as $bool_option ) {
+			if ( isset( $options[ $bool_option ] ) )
+				$options[ $bool_option ] = true;
+			else
+				$options[ $bool_option ] = false;
+		}
+
+		if ( isset( $options['width'] ) )
+			$options['width'] = absint( $options['width'] );
 
 		$like_button = Facebook_Like_Button::fromArray( $options );
 		if ( $like_button ) {
