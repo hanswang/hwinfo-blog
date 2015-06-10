@@ -11,7 +11,12 @@
 
 	<?php get_sidebar(); ?>
 	</div><!-- #main -->
-
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- HWinfo -->
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9281883025637377" data-ad-slot="7142062241" data-ad-format="auto"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
 	<footer id="colophon" class="site-footer cf" role="contentinfo">
 		<?php if ( has_nav_menu( 'primary' ) ) : ?>
 			<nav role="navigation" class="main-navigation cf">
