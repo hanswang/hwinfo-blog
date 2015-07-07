@@ -3,13 +3,15 @@ Theme Name: Accessible Zen
 Theme URI: http://davidakennedy.com/projects/accessible-zen/
 Author: David A. Kennedy
 Author URI: http://davidakennedy.com
-Description: The Accessible Zen theme is an accessible, minimalistic, readable, and fully responsive HTML5 theme that puts the focus on your content and nothing else. Based on the original Zen Habits theme by Leo Babauta: http://zenhabits.net/theme/, with more WordPress goodness built in.
-Version: 1.1.3
+Description: The Accessible Zen theme is an accessible, minimalistic, readable, and fully responsive HTML5 theme that puts the focus on your content and nothing else. Inspired by the writing and design work of Leo Babauta at Zen Habits.
+Version: 1.1.6
 License: GNU General Public License
 License URI: license.txt
+Text Domain: accessiblezen
 Tags: white, blue, light, one-column, responsive-layout, accessibility-ready, custom-background, custom-header, custom-menu, editor-style, featured-images, flexible-header, post-formats, rtl-language-support, sticky-post, theme-options, threaded-comments, translation-ready
 
-Accessible Zen WordPress Theme, Copyright 2013 David A. Kennedy.
+Accessible Zen WordPress Theme, (C) 2013-2015 David A. Kennedy.
+Accessible Zen is based on Underscores http://underscores.me/, (C) 2012-2015 Automattic, Inc.
 Accessible Zen, like WordPress, is licensed and distributed under the GPL.
 Use it to make something cool, have fun, and share what you've learned with others.
 
@@ -18,6 +20,8 @@ The original Zen Habits 2 theme by Leo Babauta is uncopyrighted.
 Underscores is licensed under the [GNU General Public License](http://www.gnu.org/licenses/gpl-2.0.html).
 The Fluid Baseline Grid is licensed under the [Unlicense](http://unlicense.org/).
 Genericons is licensed under the [GNU General Public License](http://www.gnu.org/licenses/gpl-2.0.html).
+Merriweather font is licensed under the [SIL Open Font License, 1.1](http://scripts.sil.org/OFL).
+Merriweather Sans font is licensed under the [SIL Open Font License, 1.1](http://scripts.sil.org/OFL).
 See the theme's README for more information.
 
 Resetting and rebuilding styles have been helped along thanks to the fine work of
@@ -161,20 +165,25 @@ input,
 select,
 textarea {
 	color: #333;
-	font-family: 'Merriweather', Georgia, Times, "Times New Roman", serif;
+	font-family: "Merriweather", Georgia, Times, "Times New Roman", serif;
 	font-size: 100%;
 	font-weight: 400;
 	line-height: 1.5;
 }
 
 /* Headings */
-h1,h2,h3,h4,h5,h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
 	color: #006e9d;
 	clear: both;
-	font-family: 'Merriweather Sans', Verdana, Geneva, sans-serif;
-  	line-height: 1.2;
-  	margin: 0 0 0.125em;
-  	text-shadow:1px 1px 1px rgba(0,0,0,.10);
+	font-family: "Merriweather Sans", Verdana, Geneva, sans-serif;
+	line-height: 1.2;
+	margin: 0;
+	text-shadow: 1px 1px 1px rgba(0,0,0,.10);
 }
 .content-area h1,
 .content-area h2,
@@ -193,29 +202,41 @@ hr {
 	padding: 0;
 }
 /* Composed to a scale of 16px, 20px, 24px, 30px, 36px and 46px */
-h1, .h1 {
+h1,
+.h1 {
 	font-size: 2.5em; /* 40px */
+	margin-bottom: 0.5em;
 }
-h2, .h2 {
+h2,
+.h2 {
 	font-size: 1.875em; /* 30px */
+	margin-bottom: 0.5em;
 }
-h3, .h3 {
+h3,
+.h3 {
 	font-size: 1.25em; /* 20px */
 	letter-spacing: 0.1em;
+	margin-bottom: 0.5em;
 	text-transform: uppercase;
-} 
-h4, .h4 {
+}
+h4,
+.h4 {
 	font-size: 1.125em; /* 18px */
 	font-weight: bold;
+	margin-bottom: 0.25em;
 }
-h5, .h5 {
+h5,
+.h5 {
 	font-size: 1.0625em; /* 17px */
 	font-style: italic;
+	margin-bottom: 0.25em;
 }
-h6, .h6 {
+h6,
+.h6 {
 	font-size: 1em; /* 16px */
 	text-transform: uppercase;
 	font-weight: bold;
+	margin-bottom: 0.25em;
 }
 p,
 ul,
@@ -325,7 +346,8 @@ button, input {
 	line-height: normal;
 	*overflow: visible;
 }
-button, input[type="button"],
+button,
+input[type="button"],
 input[type="reset"],
 input[type="submit"] {
 	border: 2px solid #008fcc;
@@ -343,18 +365,18 @@ input[type="submit"] {
 	-webkit-appearance: button;
 }
 button:hover,
-html input[type="button"]:hover,
+input[type="button"]:hover,
 input[type="reset"]:hover,
 input[type="submit"]:hover {
 	background-color: #666;
 	border-color: #666 #666 #333 #666;
 }
 button:focus,
-html input[type="button"]:focus,
+input[type="button"]:focus,
 input[type="reset"]:focus,
 input[type="submit"]:focus,
 button:active,
-html input[type="button"]:active,
+input[type="button"]:active,
 input[type="reset"]:active,
 input[type="submit"]:active {
 	background-color: #666;
@@ -403,7 +425,8 @@ input[type="search"] {
 }
 
 /* Quotes */
-blockquote, q {
+blockquote,
+q {
 	quotes: none;
 }
 blockquote:before,
@@ -545,7 +568,6 @@ dfn[title] {
 	border-bottom: 1px dotted #444;
 	cursor: help;
 }
-
 mark, ins {
 	background: #fff9c0;
 	text-decoration: none;
@@ -630,7 +652,8 @@ sub {
 }
 
 /* Extends the .visuallyhidden class to allow the element to be focusable when navigated to via the keyboard: h5bp.com/p */
-.screen-reader-text.focusable:active, .screen-reader-text.focusable:focus {
+.screen-reader-text.focusable:active,
+.screen-reader-text.focusable:focus {
 	clip: auto;
 	height: auto;
 	margin: 0;
@@ -692,14 +715,15 @@ div.callout {
 	display: block;
 	margin: 0 auto 1.5em;
 }
+
 /* Contain floats: h5bp.com/q */
 .cf:before,
 .cf:after {
-    content: " "; /* 1 */
-    display: table; /* 2 */
+	content: " "; /* 1 */
+	display: table; /* 2 */
 }
 .cf:after {
-    clear: both;
+	clear: both;
 }
 
 /**
@@ -707,7 +731,7 @@ div.callout {
  * Include this rule to trigger hasLayout and contain floats.
  */
 .cf {
-    *zoom: 1;
+	*zoom: 1;
 }
 .clear {
 	clear: both;
@@ -757,7 +781,12 @@ div.callout {
 /* Site Title and Description */
 .site-title {
 	font-size: 2.8125em; /* 45px */
+	color: #006e9d;
+	font-family: "Merriweather Sans", Verdana, Geneva, sans-serif;
+	line-height: 1.2;
+	margin: 0 0 0.25em;
 	text-align: center;
+	text-shadow: 1px 1px 1px rgba(0,0,0,.10);
 }
 .site-title a {
 	text-decoration: none;
@@ -767,8 +796,12 @@ div.callout {
 }
 .site-description {
 	color: #666;
+	font-family: "Merriweather Sans", Verdana, Geneva, sans-serif;
 	font-size: 1.25em; /* 20px */
+	line-height: 1.2;
+	margin: 0 0 0.25em;
 	text-align: center;
+	text-shadow: 1px 1px 1px rgba(0,0,0,.10);
 }
 
 /* =Content
@@ -943,8 +976,8 @@ img[class*="wp-image-"] {
 	vertical-align: top;
 	width: 100%;
 	/* IE7 hack to mimic inline-block on block elements */
-    *display: inline;
-    *zoom: 1;
+	*display: inline;
+	*zoom: 1;
 }
 .gallery-columns-2 .gallery-item {
 	max-width: 50%;
@@ -1175,8 +1208,11 @@ a.comment-reply-link:hover {
 	border: 1px solid #008fcc;
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
-	border-radius: 3px;	
+	border-radius: 3px;
 	padding: 1.5em 1.5em 0;
+}
+.comment-list li.bypostauthor {
+	padding-bottom: 1.5em;
 }
 
 /* Comment Form */
@@ -1309,17 +1345,17 @@ p.comment-form-comment {
 @media only screen and (min-width: 37.5em) {
 	/* Wrapper div */
 	body.custom-background .site { width: 80%; }
-	
+
 	/* COLUMN GRID */
 	.sidebar-widgets { display: inline; float: left; }
-	
+
 	/* 2 COLUMN GRID */
 	.one .sidebar-widgets { width: 93.458%; }
 	.two .sidebar-widgets { width: 43.458%; }
-	
+
 	/* Nav abstraction adjustment */
 	.nav li { display: inline-block; }
-	
+
 	/* Content */
 	.site tr, th, td { padding-right: 1.5em; }
 }
@@ -1339,7 +1375,7 @@ p.comment-form-comment {
   @page { margin: 0.5cm; }
   p, h2, h3 { orphans: 3; widows: 3; }
   h2, h3 { page-break-after: avoid; }
-  
+
   /* Let's turn off unneeded content */
   .skip-container,
   #masthead,
@@ -1352,8 +1388,8 @@ p.comment-form-comment {
 ----------------------------------------------- */
 .ie7 .nav li {
 	/* IE7 hack to mimic inline-block on block elements */
-    *display: inline;
-    *zoom: 1;
+	*display: inline;
+	*zoom: 1;
 }
 #respond .comment-form-author label,
 #respond .comment-form-email label,

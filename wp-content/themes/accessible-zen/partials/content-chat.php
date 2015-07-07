@@ -13,9 +13,9 @@
 				<span class="title">
 					<?php _e( 'Chat', 'accessiblezen' ); ?>
 				</span>
-				<h1 class="entry-title"><a href="<?php the_permalink(); ?>" rel="bookmark"><?php the_title(); ?></a></h1>
+				<h2 class="entry-title"><a href="<?php the_permalink(); ?>" rel="bookmark"><?php the_title(); ?></a></h2>
 			</header>
-			
+
 			<div class="entry-content">
 				<?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'accessiblezen' ) ); ?>
 			</div><!-- .entry-content -->
