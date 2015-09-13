@@ -91,9 +91,8 @@ function websimon_tables_plugin_requests()
 */
 function websimon_tables_admin_register_head() 
 {
-    $siteurl = get_option('siteurl');
-    $url = $siteurl . '/wp-content/plugins/' . basename(dirname(__FILE__)) . '/css/websimon_tables.css';
-    $preview_url = $siteurl . '/wp-content/plugins/' . basename(dirname(__FILE__)) . '/css/table_skins.php';
+    $url = '/wp-content/plugins/' . basename(dirname(__FILE__)) . '/css/websimon_tables.css';
+    $preview_url = '/wp-content/plugins/' . basename(dirname(__FILE__)) . '/css/table_skins.php';
     echo "<link rel='stylesheet' type='text/css' href='$url' />\n";
     echo "<link rel='stylesheet' type='text/css' href='$preview_url' />\n";
 }
