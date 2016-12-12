@@ -1,17 +1,17 @@
 === Drift ===
 Contributors: Drift
 
-Tags: customer, chat, free chat, livechat, Slack, Intercom, HubSpot, Salesforce, Zapier, hellobar, hello bar, popup, Ontraport, Pardot, Klaviyo, popup, exit intent, growth, subscribers, subscription, email form,  analytics,  widget, lightbox, inbound marketing, welcome mat, landing pagelivechat, olark, boldchat, online chat, online support, php live chat, snapengage, support software, Website Chat, WordPress chat, wordpress live chat, wordpress live chat plugin, zendesk, Zopim, Zopim live chat, tawk, tawk.to, tawkto, jivosite, snapengage,Chat Widget
+Tags: drift, live chat, chat, communication, sales, marketing, announcements, talk to customers, customer feedback, feedback, chat plugin, free, free chat, chatra, livechat, slack, intercom, hubspot, salesforce, zapier, hellobar, hello bar, popup, ontraport, pardot, klaviyo, popup, exit intent, growth, subscribers, subscription, email form,  analytics,  widget, lightbox, inbound marketing, welcome mat, landing pagelivechat, olark, boldchat, online chat, online support, in-app chat, instant message, helpdesk, php live chat, snapengage, support software, website chat, wordpress chat, wordpress live chat, wordpress live chat plugin, zendesk, zopim, zopim live chat, tawk, tawk.to, tawkto, jivosite, snapengage,chat widget
 
 Drift enables you to chat with your website visitors, increase sales and collect feedback for Free.
 
-Requires at least: 4.0.1
-Tested up to: 4.5.1
-Stable tag: 1.4
+Requires at least: 3.4
+Tested up to: 4.6.1
+Stable tag: 1.7.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Drift allows you to talk to your website visitors and customers in real-time, from anywhere.
+Drift is the 100% free way used by over 10,000 businesses to talk to their leads and customers in real-time, from anywhere. Try it now!
 
 == Description ==
 
@@ -117,11 +117,25 @@ Note: You will need a free Drift account : <a href="https://www.drift.com/?utm_s
 Step-by-step Guide:
 
 * Install plugin from WordPress directory and activate it.
-* Under Drift section, click on Settings to add your Drift embed code.
+* Under settings section, click on Drift to add your Drift embed code
 * Customize the chat widget to your preference.
 * Finally, make full use of our Dashboard to manage your chat widget.
 
 == Changelog ==
+
+= 1.7.1 =
+* Cleanup
+* Added support for targeting Wordpress User Role
+
+= 1.7 =
+* Cleanup
+* Added support for targeting Wordpress User Role
+
+= 1.5 =
+* Cleanup
+* New page targeting options
+* Flush Cache on setup
+* Localization
 
 = 1.4 =
 * Clean up code.
