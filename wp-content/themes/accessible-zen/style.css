@@ -58,7 +58,7 @@ html {
 	-ms-text-size-adjust: 100%; /* www.456bereastreet.com/archive/201012/controlling_text_size_in_safari_for_ios_without_disabling_user_zoom/ */
 }
 body {
-	background: #fff;
+	background: #FFF;
 }
 article,
 aside,
@@ -105,7 +105,7 @@ a img {
 ----------------------------------------------- */
 /* Outer containers */
 .site {
-	background-color: #fff;
+	background-color: #D6CEC3;
 }
 body.custom-background-empty .site,
 body.custom-background-white .site {
