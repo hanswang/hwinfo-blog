@@ -4,8 +4,8 @@
  *
  * Displays all of the <head> section and everything up till <div id="main">.
  *
- * @package accessiblezen
- * @since accessiblezen 1.0
+ * @package Accessible_Zen
+ * @since Accessible Zen 1.0
  */
 ?><!DOCTYPE html>
 <!--[if lt IE 7 ]><html class="ie ie6" <?php language_attributes(); ?>> <![endif]-->
@@ -15,7 +15,6 @@
 <head>
 <meta charset="<?php bloginfo( 'charset' ); ?>" />
 <meta name="viewport" content="width=device-width" />
-<title><?php wp_title( '|', true, 'right' ); ?></title>
 <link rel="profile" href="http://gmpg.org/xfn/11" />
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
 <!--[if lt IE 9]>
@@ -29,7 +28,7 @@
 <div id="page" class="hfeed site cf">
 	<?php do_action( 'before' ); ?>
 	<div class="skip-container cf">
-		<a class="skip-link screen-reader-text focusable" href="#main"><?php _e( '&darr; Skip to Main Content', 'accessiblezen' ); ?></a>
+		<a class="skip-link screen-reader-text focusable" href="#main"><?php esc_html_e( '&darr; Skip to Main Content', 'accessible-zen' ); ?></a>
 	</div><!-- .skip-container -->
 	<header id="masthead" class="site-header cf" role="banner">
 		<div class="site-banner">

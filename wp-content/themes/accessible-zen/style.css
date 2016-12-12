@@ -4,14 +4,14 @@ Theme URI: http://davidakennedy.com/projects/accessible-zen/
 Author: David A. Kennedy
 Author URI: http://davidakennedy.com
 Description: The Accessible Zen theme is an accessible, minimalistic, readable, and fully responsive HTML5 theme that puts the focus on your content and nothing else. Inspired by the writing and design work of Leo Babauta at Zen Habits.
-Version: 1.1.6
+Version: 1.2
 License: GNU General Public License
 License URI: license.txt
-Text Domain: accessiblezen
+Text Domain: accessible-zen
 Tags: white, blue, light, one-column, responsive-layout, accessibility-ready, custom-background, custom-header, custom-menu, editor-style, featured-images, flexible-header, post-formats, rtl-language-support, sticky-post, theme-options, threaded-comments, translation-ready
 
-Accessible Zen WordPress Theme, (C) 2013-2015 David A. Kennedy.
-Accessible Zen is based on Underscores http://underscores.me/, (C) 2012-2015 Automattic, Inc.
+Accessible Zen WordPress Theme, (C) 2013-2016 David A. Kennedy.
+Accessible Zen is based on Underscores http://underscores.me/, (C) 2012-2016 Automattic, Inc.
 Accessible Zen, like WordPress, is licensed and distributed under the GPL.
 Use it to make something cool, have fun, and share what you've learned with others.
 
@@ -105,7 +105,7 @@ a img {
 ----------------------------------------------- */
 /* Outer containers */
 .site {
-	background-color: #D6CEC3;
+	background-color: #fff;
 }
 body.custom-background-empty .site,
 body.custom-background-white .site {
@@ -896,6 +896,11 @@ div.callout {
 .term-post-format-aside .format-aside {
 	border-top: 1px solid #e5e5e5;
 	margin: 1.5em 0;
+}
+
+/* Vertically align all Genericons */
+.genericon {
+	vertical-align: middle;
 }
 
 /* =Pages
