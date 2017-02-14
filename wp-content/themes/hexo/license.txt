@@ -1,0 +1,36 @@
+Hexo
+====================================
+Hexo is distributed under the terms of the GNU GPL.
+
+Licenses and External Assets
+====================================
+
+Hexo is distributed under the terms of the GNU GPL v2
+
+Hexo's code base started out as _s (http://underscores.me).
+
+The theme features two custom fonts:
+
+1) Lato: https://fonts.googleapis.com/css?family=Lato:400,700
+Copyright (c) 2010-2011 by tyPoland Lukasz Dziedzic (team@latofonts.com) with Reserved Font Name "Lato". 
+Licensed under the SIL Open Font License, Version 1.1.
+License Link: SIL Open Font License 1.1 http://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL
+
+2) Merriweather: https://fonts.googleapis.com/css?family=Merriweather
+Copyright (c) 2015 Dan Reynolds. Copyright (c) 2010-2015, Sorkin Type Co (www.sorkintype.com) with Reserved Font Name 'Merriweather'
+Licensed under the SIL Open Font License, Version 1.1.
+License Link: SIL Open Font License 1.1 http://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL
+
+- Layout is Powered by Bootstrap: http://getbootstrap.com/
+Copyright 2016 Twitter
+Bootstrap is released under the MIT license
+MIT License: https://github.com/twbs/bootstrap/blob/master/LICENSE
+
+- WP Bootstrap Navwalker:https://github.com/twittem/wp-bootstrap-navwalker
+Copyright 2012 jonsuh
+Licensed under GPL 2.0
+License URI: http://www.gnu.org/licenses/gpl-2.0.txt
+
+- Tether: https://github.com/HubSpot/tether
+Copyright (c) 2014-2016 HubSpot, Inc.
+License URI: https://github.com/HubSpot/tether/blob/master/LICENSE

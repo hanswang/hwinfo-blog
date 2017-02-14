@@ -59,8 +59,9 @@ function add_drift()
       echo $drift_tag;
       echo"<!-- end: Drift Code. -->\n";
 
-      // Optional
+      // Optional Drift Identify call
       get_drift_identify();
+
     }
   }
 }
