@@ -481,7 +481,7 @@ html {
 
 @media(min-width:960px){
 body {
-	background: #1F1F26; /* Fallback for when there is no custom background color defined. */
+	background: #A3C0CA; /* Fallback for when there is no custom background color defined. */
 	padding: 16px;
 }
 
@@ -506,7 +506,7 @@ body:before, body:after {
 }
 
 #page{
-	background: #fff;
+	background: #F6FAFB;
 }
 
 blockquote:before,
@@ -846,7 +846,7 @@ a:active {
 }
 
 .navbar-toggler{
-	background: #fefc27;
+	background: #A3C0CA;
     border-radius: 0px;
 		float: right;
 }
@@ -869,7 +869,7 @@ a:active {
 }
 
 .topm {
-	    background: #f7f7f9;
+	    background: #D5E4E9;
 }
 
 .topm .row {
@@ -1136,7 +1136,7 @@ form.search-form label{
 }
 
 .bottomm{
-	background: #f7f7f9;
+	background: #D5E4E9;
 }
 
 .bottomm .container1 {

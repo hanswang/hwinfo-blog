@@ -27,8 +27,6 @@
 
 			<div><a href="#totop" class="to-top">&#8593;</a></div>
 			
-			<a href="<?php echo esc_url( __( 'http://imrohan.com/', 'hexo' ) ); ?>"><?php printf( esc_html__( 'Proudly powered by %s', 'hexo' ), 'imrohan' ); ?></a>
-			
 		</div><!-- .site-info -->
 	</footer><!-- #colophon -->
 
