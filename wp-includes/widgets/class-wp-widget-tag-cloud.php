@@ -65,7 +65,8 @@ class WP_Widget_Tag_Cloud extends WP_Widget {
 		 */
 		$tag_cloud = wp_tag_cloud( apply_filters( 'widget_tag_cloud_args', array(
 			'taxonomy' => $current_taxonomy,
-			'echo' => false
+			'echo' => false,
+			'smallest' => 12
 		) ) );
 
 		if ( empty( $tag_cloud ) ) {
