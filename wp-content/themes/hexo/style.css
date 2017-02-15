@@ -1815,3 +1815,17 @@ object {
 		font-size: 70%
 	}
 }
+
+.tagcloud a {
+    padding: .2em .6em .3em;
+    font-size: 90%;
+    border-radius: .25em;
+    background-color: #337ab7;
+    color: #eee;
+}
+
+.tagcloud a:hover {
+    font-size: 100%;
+    background-color: white;
+    color: #337ab7;
+}
