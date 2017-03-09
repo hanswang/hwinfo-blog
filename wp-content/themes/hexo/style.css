@@ -1829,3 +1829,14 @@ object {
     background-color: white;
     color: #337ab7;
 }
+
+.highlight-action {
+    background-color: yellow;
+    font-weight: bold;
+}
+
+.highlight-action:hover {
+    background-color: black;
+    color: yellow;
+    font-size: 110%;
+}

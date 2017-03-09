@@ -903,7 +903,7 @@ function wp_generate_tag_cloud( $tags, $args = '' ) {
 	// generate the output links array
 	foreach ( $tags_data as $key => $tag_data ) {
 		$class = $tag_data['class'] . ' tag-link-position-' . ( $key + 1 );
-		$a[] = "<a href='" . esc_url( $tag_data['url'] ) . "'" . $tag_data['role'] . " class='" . esc_attr( $class ) . "' title='" . esc_attr( $tag_data['title'] ) . "' >" . esc_html( $tag_data['name'] ) . "</a>";
+		$a[] = "<a href='" . esc_url( $tag_data['url'] ) . "'" . $tag_data['role'] . " class='" . esc_attr( $class ) . "' title='" . esc_attr( $tag_data['title'] ) . "' style='font-size: " . esc_attr( str_replace( ',', '.', $tag_data['font_size'] ) . $args['unit'] ) . ";'>" . esc_html( $tag_data['name'] ) . "</a>";
 	}
 
 	switch ( $args['format'] ) {

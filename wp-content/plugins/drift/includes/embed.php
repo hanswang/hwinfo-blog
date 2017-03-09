@@ -51,7 +51,7 @@ function add_drift()
   if ( esc_attr( $options['drift_enabled'] ) == "on" )
   {
     $drift_tag = $options['drift_widget_code'];
-
+    
     // Insert tracker code
     if ( '' != $drift_tag )
     {
@@ -59,8 +59,10 @@ function add_drift()
       echo $drift_tag;
       echo"<!-- end: Drift Code. -->\n";
 
-      // Optional Drift Identify call
-      get_drift_identify();
+      // Optional
+      if ( esc_attr( $options['drift_identify'] ) == "on" ){
+        get_drift_identify();
+      }
 
     }
   }
